@@ -1,6 +1,3 @@
-// Author: Kev J.
-
-
 #include <stdlib.h>
 #include <windows.h>
 #include <iostream>
@@ -45,59 +42,6 @@ struct GAMEINFO {
 
 HANDLE hInput, hOutput;
 GAMEINFO GameInfo;
-
-void Movement(GAMEINFO &GameInfo);
-void Draw(GAMEINFO);
-void Erase(GAMEINFO);
-int LaunchBullet(GAMEINFO &GameInfo, int);
-void LaunchBullet2(GAMEINFO &GameInfo, int);
-int Wait();
-
-
-int main()
-{
-	GAMEINFO GameInfo;
-	
-	
-
-	hInput = GetStdHandle(STD_INPUT_HANDLE);
-	hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
-	
-	
-	
-	SetConsoleMode(hOutput, ENABLE_PROCESSED_INPUT);
-	
-	GameInfo.PlayerOnePosition.X = 19;
-	GameInfo.PlayerOnePosition.Y = 12;
-	GameInfo.PlayerTwoPosition.X = 61;
-	GameInfo.PlayerTwoPosition.Y = 12;
-	GameInfo.PlayerOneBullet.X = 0;
-	GameInfo.PlayerOneBullet.Y = 0;
-	GameInfo.PlayerTwoBullet.X = 79;
-	GameInfo.PlayerTwoBullet.Y = 0;
-	GameInfo.PlayerOneBullet2.X = 1;
-	GameInfo.PlayerOneBullet2.Y = 0;
-	GameInfo.PlayerTwoBullet2.X = 78;
-	GameInfo.PlayerTwoBullet2.Y = 0;
-	GameInfo.ZeroZero.X = 0;
-	GameInfo.ZeroZero.Y = 0;
-
-	int i;
-	GameInfo.ZeroZero.Y = 24;
-	for(i = 0; i < 79; i++){
-		SetConsoleCursorPosition(hOutput, GameInfo.ZeroZero);
-		cout << ".";
-		GameInfo.ZeroZero.X++;
-	}
-
-	Draw(GameInfo);
-
-	while(1){
-		Movement(GameInfo);
-	}
-	
-	return 0;
-}
 
 void Movement(GAMEINFO &GameInfo)
 {	
@@ -501,6 +445,54 @@ void LaunchBullet2(GAMEINFO &GameInfo, int PlayerNumber)
 		Draw(GameInfo);
 	}
 }
+
+
+int main()
+{
+	GAMEINFO GameInfo;
+	
+	
+
+	hInput = GetStdHandle(STD_INPUT_HANDLE);
+	hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	
+	
+	
+	SetConsoleMode(hOutput, ENABLE_PROCESSED_INPUT);
+	
+	GameInfo.PlayerOnePosition.X = 19;
+	GameInfo.PlayerOnePosition.Y = 12;
+	GameInfo.PlayerTwoPosition.X = 61;
+	GameInfo.PlayerTwoPosition.Y = 12;
+	GameInfo.PlayerOneBullet.X = 0;
+	GameInfo.PlayerOneBullet.Y = 0;
+	GameInfo.PlayerTwoBullet.X = 79;
+	GameInfo.PlayerTwoBullet.Y = 0;
+	GameInfo.PlayerOneBullet2.X = 1;
+	GameInfo.PlayerOneBullet2.Y = 0;
+	GameInfo.PlayerTwoBullet2.X = 78;
+	GameInfo.PlayerTwoBullet2.Y = 0;
+	GameInfo.ZeroZero.X = 0;
+	GameInfo.ZeroZero.Y = 0;
+
+	int i;
+	GameInfo.ZeroZero.Y = 24;
+	for(i = 0; i < 79; i++){
+		SetConsoleCursorPosition(hOutput, GameInfo.ZeroZero);
+		cout << ".";
+		GameInfo.ZeroZero.X++;
+	}
+
+	Draw(GameInfo);
+
+	while(1){
+		Movement(GameInfo);
+	}
+	
+	return 0;
+}
+
+
 
 
 
