@@ -3,4 +3,4 @@ This repo contains all the games that I have developed so far using C++ graphica
 
 I have mainly used SFML library for creation of games.
 
-To learn more about SFMl - check out this link -> https://www.sfml-dev.org/
+To learn more about SFML- check out this link -> https://www.sfml-dev.org/
