@@ -41,23 +41,13 @@ int main()
              app.close();
        }
 
-    x+=dx;
-    for (int i=0;i<n;i++)
-        if ( FloatRect(x+3,y+3,6,6).intersects(block[i].getGlobalBounds()) ) 
-             {block[i].setPosition(-100,0); dx=-dx;}
-
-    y+=dy;
-    for (int i=0;i<n;i++)
-        if ( FloatRect(x+3,y+3,6,6).intersects(block[i].getGlobalBounds()) ) 
-             {block[i].setPosition(-100,0); dy=-dy;}
+    
 
     if (x<0 || x>520)  dx=-dx;
     if (y<0 || y>450)  dy=-dy;
 
     if (Keyboard::isKeyPressed(Keyboard::Right)) sPaddle.move(6,0);
     if (Keyboard::isKeyPressed(Keyboard::Left)) sPaddle.move(-6,0);
-
-    if ( FloatRect(x,y,12,12).intersects(sPaddle.getGlobalBounds()) ) dy=-(rand()%5+2);
 
     sBall.setPosition(x,y);
 
@@ -66,10 +56,6 @@ int main()
     app.draw(sBall);
     app.draw(sPaddle);
 
-    for (int i=0;i<n;i++)
-     app.draw(block[i]);
-
-    app.display();
     }
 
   return 0;
