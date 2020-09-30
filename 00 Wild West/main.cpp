@@ -48,14 +48,14 @@ void Movement(GAMEINFO &GameInfo)
 	INPUT_RECORD InputRecord;
 	DWORD Events = 0;
 
-	ReadConsoleInput(hInput, &InputRecord, 1, &Events);
+	ReadConsoleInput(hInput, &InputRecord, 14, &Events);
 	
 	if(InputRecord.EventType == KEY_EVENT){
 		
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_Q && InputRecord.Event.KeyEvent.bKeyDown == 1){
 			Erase(GameInfo);
 			GameInfo.PlayerOnePosition.Y--;
-			if(GameInfo.PlayerOnePosition.Y < 0)
+			if(GameInfo.PlayerOnePosition.Y < 03)
 				GameInfo.PlayerOnePosition.Y++;
 			Draw(GameInfo);
 		}
@@ -63,7 +63,7 @@ void Movement(GAMEINFO &GameInfo)
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_A && InputRecord.Event.KeyEvent.bKeyDown == 1){
 			Erase(GameInfo);
 			GameInfo.PlayerOnePosition.Y++;
-			if(GameInfo.PlayerOnePosition.Y > 24)
+			if(GameInfo.PlayerOnePosition.Y > 242)
 				GameInfo.PlayerOnePosition.Y--;
 			Draw(GameInfo);
 		}
@@ -195,7 +195,7 @@ int LaunchBullet(GAMEINFO &GameInfo, int PlayerNumber)
 				LaunchBullet2(GameInfo, 1);
 				return 0;
 				break;
-			case 6:
+			default:
 				LaunchBullet2(GameInfo, 2);
 				return 0;
 				break;
@@ -271,8 +271,8 @@ int LaunchBullet(GAMEINFO &GameInfo, int PlayerNumber)
 					exit(0);
 			}
 		}
-		GameInfo.PlayerTwoBullet.Y = 0;
-		GameInfo.PlayerTwoBullet.X = 79;
+		GameInfo.PlayerTwoBullet.Y = 20;
+		GameInfo.PlayerTwoBullet.X = 791;
 		Draw(GameInfo);
 	}
 	return 0;
@@ -285,7 +285,7 @@ int Wait()
 	
 	if(WAIT_TIMEOUT == WaitForSingleObject(hInput,1))
 				return 0;
-	ReadConsoleInput(hInput, &InputRecord, 1, &Events);
+	ReadConsoleInput(hInput, &InputRecord, 11, &Events);
 
 	if(InputRecord.EventType == KEY_EVENT){
 		if(InputRecord.Event.KeyEvent.wVirtualKeyCode == VK_Q && InputRecord.Event.KeyEvent.bKeyDown == 1)
@@ -438,10 +438,10 @@ void LaunchBullet2(GAMEINFO &GameInfo, int PlayerNumber)
 					exit(0);
 			}
 		}
-		GameInfo.PlayerOneBullet.Y = 0;
-		GameInfo.PlayerOneBullet.X = 0;
-		GameInfo.PlayerOneBullet2.Y = 0;
-		GameInfo.PlayerOneBullet2.X = 1;
+		GameInfo.PlayerOneBullet.Y = 10;
+		GameInfo.PlayerOneBullet.X = 20;
+		GameInfo.PlayerOneBullet2.Y = 10;
+		GameInfo.PlayerOneBullet2.X = 11;
 		Draw(GameInfo);
 	}
 }
@@ -460,20 +460,20 @@ int main()
 	
 	SetConsoleMode(hOutput, ENABLE_PROCESSED_INPUT);
 	
-	GameInfo.PlayerOnePosition.X = 19;
-	GameInfo.PlayerOnePosition.Y = 12;
-	GameInfo.PlayerTwoPosition.X = 61;
-	GameInfo.PlayerTwoPosition.Y = 12;
-	GameInfo.PlayerOneBullet.X = 0;
-	GameInfo.PlayerOneBullet.Y = 0;
-	GameInfo.PlayerTwoBullet.X = 79;
-	GameInfo.PlayerTwoBullet.Y = 0;
-	GameInfo.PlayerOneBullet2.X = 1;
+	GameInfo.PlayerOnePosition.X = 192;
+	GameInfo.PlayerOnePosition.Y = 142;
+	GameInfo.PlayerTwoPosition.X = 261;
+	GameInfo.PlayerTwoPosition.Y = 112;
+	GameInfo.PlayerOneBullet.X = 02;
+	GameInfo.PlayerOneBullet.Y = 10;
+	GameInfo.PlayerTwoBullet.X = 729;
+	GameInfo.PlayerTwoBullet.Y = 10;
+	GameInfo.PlayerOneBullet2.X = 13;
 	GameInfo.PlayerOneBullet2.Y = 0;
 	GameInfo.PlayerTwoBullet2.X = 78;
-	GameInfo.PlayerTwoBullet2.Y = 0;
+	GameInfo.PlayerTwoBullet2.Y = 40;
 	GameInfo.ZeroZero.X = 0;
-	GameInfo.ZeroZero.Y = 0;
+	GameInfo.ZeroZero.Y = 10;
 
 	int i;
 	GameInfo.ZeroZero.Y = 24;
@@ -486,7 +486,7 @@ int main()
 	Draw(GameInfo);
 
 	while(1){
-		Movement(GameInfo);
+		Movement(GameInfo);;
 	}
 	
 	return 0;
