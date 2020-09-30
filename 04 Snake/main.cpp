@@ -19,11 +19,7 @@ void Tick()
  {
     for (int i=num;i>0;--i)
      {s[i].x=s[i-1].x; s[i].y=s[i-1].y;}
-
-    if (dir==0) s[0].y+=1;      
-    if (dir==1) s[0].x-=1;        
-    if (dir==2) s[0].x+=1;         
-    if (dir==3) s[0].y-=1;   
+ 
 
     if ((s[0].x==f.x) && (s[0].y==f.y)) 
      {num++; f.x=rand()%N; f.y=rand()%M;}
@@ -37,7 +33,6 @@ void Tick()
 
 int main()
 {  
-    srand(time(0));
 
     RenderWindow window(VideoMode(w, h), "Snake Game!");
 
@@ -68,9 +63,7 @@ int main()
         }
 
         if (Keyboard::isKeyPressed(Keyboard::Left)) dir=1;   
-        if (Keyboard::isKeyPressed(Keyboard::Right)) dir=2;    
-        if (Keyboard::isKeyPressed(Keyboard::Up)) dir=3;
-        if (Keyboard::isKeyPressed(Keyboard::Down)) dir=0;
+        if (Keyboard::isKeyPressed(Keyboard::Right)) dir=2;
 
         if (timer>delay) {timer=0; Tick();}
 
