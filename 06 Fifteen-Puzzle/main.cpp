@@ -34,8 +34,7 @@ int main()
                 app.close();
 
                if (e.type == Event::MouseButtonPressed)
-                if (e.key.code == Mouse::Left)
-                  {
+                if (e.key.code == Mouse::Left){
                      Vector2i pos = Mouse::getPosition(app);
                      int x = pos.x/w + 1;
                      int y = pos.y/w + 1;
@@ -60,8 +59,88 @@ int main()
                      {sprite[n].move(speed*dx,speed*dy);
                       app.draw(sprite[16]);
                       app.draw(sprite[n]);
-                      app.display(); }
+                      app.display();
+					  }
                   }
+                else if(Keyboard::isKeyPressed(Keyboard::Left){
+                	 int dx=0;
+                     int dy=-1;
+
+                     int n = grid[x][y];
+                     grid[x][y] = 16;
+                     grid[x+dx][y+dy] = n;
+
+                     //animation
+                     sprite[16].move(-dx*w,-dy*w);
+                     float speed=3;
+
+                     for (int i=0;i<w;i+=speed)
+                     {sprite[n].move(speed*dx,speed*dy);
+                      app.draw(sprite[16]);
+                      app.draw(sprite[n]);
+                      app.display();
+					  }
+
+				}
+                else if(Keyboard::isKeyPressed(Keyboard::Right)){
+                	 int dx=0;
+                     int dy=1;
+
+                     int n = grid[x][y];
+                     grid[x][y] = 16;
+                     grid[x+dx][y+dy] = n;
+
+                     //animation
+                     sprite[16].move(-dx*w,-dy*w);
+                     float speed=3;
+
+                     for (int i=0;i<w;i+=speed)
+                     {sprite[n].move(speed*dx,speed*dy);
+                      app.draw(sprite[16]);
+                      app.draw(sprite[n]);
+                      app.display();
+					  }
+				}
+                else if(Keyboard::isKeyPressed(Keyboard::Up)){
+                	int dx=-1;
+                     int dy=0;
+
+                     int n = grid[x][y];
+                     grid[x][y] = 16;
+                     grid[x+dx][y+dy] = n;
+
+                     //animation
+                     sprite[16].move(-dx*w,-dy*w);
+                     float speed=3;
+
+                     for (int i=0;i<w;i+=speed)
+                     {sprite[n].move(speed*dx,speed*dy);
+                      app.draw(sprite[16]);
+                      app.draw(sprite[n]);
+                      app.display();
+					  }
+				}
+                else if(Keyboard::isKeyPressed(Keyboard::Down)){
+                	int dx=1;
+                     int dy=0;
+
+                     int n = grid[x][y];
+                     grid[x][y] = 16;
+                     grid[x+dx][y+dy] = n;
+
+                     //animation
+                     sprite[16].move(-dx*w,-dy*w);
+                     float speed=3;
+
+                     for (int i=0;i<w;i+=speed)
+                     {sprite[n].move(speed*dx,speed*dy);
+                      app.draw(sprite[16]);
+                      app.draw(sprite[n]);
+                      app.display();
+					  }
+				}
+
+
 
         }
 
