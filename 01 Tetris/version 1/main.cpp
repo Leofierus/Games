@@ -19,8 +19,8 @@ void main()
 	int draw=1,del=0;
 	union REGS ii,oo;
 	int perm=1;
-	rectangle(x-121,y-224,x+211,y+121);
-	rectangle(x-123,y-123,x+133,y+233);
+	rectangle(x-161,y-221,x+161,y+221);
+	rectangle(x-163,y-223,x+163,y+223);
 	int room1,room2,room3,room4,level1,level2,level3,level4;
 	int andom,style,tabby=0;
 	int time,clr;
@@ -46,7 +46,6 @@ void main()
 			style=6;room1=8;room2=8;room3=8;room4=9;level1=1;level2=2;level3=3;level4=1;clr=6;break;
 			case 6:
 			style=7;room1=8;room2=8;room3=8;room4=7;level1=1;level2=2;level3=3;level4=1;clr=5;break;
-			default: exit(0);
 		}
 		int ret=0;
 		int pet=0;
@@ -293,7 +292,15 @@ int mark(int level,int room,int col,int b_clr)
 		   lev[num]++;
 		  }
 		 }
-		 
+		 cleardevice();
+		 setcolor(WHITE);
+		 rectangle(x-161,y-221,x+161,y+221);
+		 rectangle(x-163,y-223,x+163,y+223);
+		 setfillstyle(SOLID_FILL,RED);
+		 for(num=500;num>=0;num--)
+		 {
+		 bar(x-160+1+20*(ro[num]-1),y-220+1+20*(lev[num]-1),x-140-1+20*(ro[num]-1),y-200-1+20*(lev[num]-1));
+		 }
 		}
 	}
 	for(r=0;r<22;r++)
