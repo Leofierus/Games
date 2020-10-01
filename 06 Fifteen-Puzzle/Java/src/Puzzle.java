@@ -1,77 +1,72 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.GroupLayout.Alignment;
 
 public class Puzzle extends JFrame implements KeyListener {
     Board board;
     JPanel sample;
     JLabel miniImage;
-    Puzzle(BufferedImage img){
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+
+    Puzzle(BufferedImage img, int level) {
+        this.setDefaultCloseOperation(2);
         this.addKeyListener(this);
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-
-        sample=new JPanel();
-        sample.setSize(800,300);
-        sample.setBackground(Color.BLACK);
-        miniImage=new JLabel();
-        miniImage.setSize(300,300);
-        miniImage.setIcon(new ImageIcon(img.getScaledInstance(300, 300, Image.SCALE_REPLICATE)));
-        sample.add(miniImage,BorderLayout.SOUTH);
-        setSize(new Dimension(800,800));
-        board=new Board(img);
-        board.add();
-        board.shuffle();
-        layout.setHorizontalGroup(
-                layout.createSequentialGroup()
-                    .addComponent(board)
-                    .addComponent(sample)
-
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                       .addComponent(board)
-                        .addComponent(sample)
-        );
-
-
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
+        GroupLayout layout = new GroupLayout(this.getContentPane());
+        this.getContentPane().setLayout(layout);
+        this.sample = new JPanel();
+        this.sample.setSize(800, 300);
+        this.sample.setBackground(Color.BLACK);
+        this.miniImage = new JLabel();
+        this.miniImage.setSize(300, 300);
+        this.miniImage.setIcon(new ImageIcon(img.getScaledInstance(300, 300, 8)));
+        this.sample.add(this.miniImage, "South");
+        this.setSize(new Dimension(800, 800));
+        this.board = new Board(img, level);
+        this.board.add();
+        this.board.shuffle();
+        layout.setHorizontalGroup(layout.createSequentialGroup().addComponent(this.board).addComponent(this.sample));
+        layout.setVerticalGroup(layout.createParallelGroup(Alignment.LEADING).addComponent(this.board).addComponent(this.sample));
+        this.pack();
+        this.setLocationRelativeTo((Component)null);
+        this.setVisible(true);
     }
 
-    @Override
     public void keyTyped(KeyEvent keyEvent) {
-
     }
 
-    @Override
     public void keyPressed(KeyEvent keyEvent) {
-
-
     }
 
-    @Override
     public void keyReleased(KeyEvent keyEvent) {
-        if(keyEvent.getKeyCode()==KeyEvent.VK_S||keyEvent.getKeyCode()==KeyEvent.VK_DOWN){
-            board.swap(MoveCell.down(board.curPos));
+        if (keyEvent.getKeyCode() != 83 && keyEvent.getKeyCode() != 40) {
+            if (keyEvent.getKeyCode() != 38 && keyEvent.getKeyCode() != 87) {
+                if (keyEvent.getKeyCode() != 37 && keyEvent.getKeyCode() != 65) {
+                    if (keyEvent.getKeyCode() == 39 || keyEvent.getKeyCode() == 68) {
+                        this.board.swap(MoveCell.right(this.board.curPos, this.board.level));
+                    }
+                } else {
+                    this.board.swap(MoveCell.left(this.board.curPos, this.board.level));
+                }
+            } else {
+                this.board.swap(MoveCell.up(this.board.curPos, this.board.level));
+            }
+        } else {
+            this.board.swap(MoveCell.down(this.board.curPos, this.board.level));
         }
-        else if(keyEvent.getKeyCode()==KeyEvent.VK_UP||keyEvent.getKeyCode()==KeyEvent.VK_W){
-            board.swap(MoveCell.up(board.curPos));
-        }
-        else if(keyEvent.getKeyCode()==KeyEvent.VK_LEFT||keyEvent.getKeyCode()==KeyEvent.VK_A){
-            board.swap(MoveCell.left(board.curPos));
-        }
-        else if(keyEvent.getKeyCode()==KeyEvent.VK_RIGHT||keyEvent.getKeyCode()==KeyEvent.VK_D){
-            board.swap(MoveCell.right(board.curPos));
-        }
-        board.revalidate();
-        if(board.check())
-            JOptionPane.showMessageDialog(this,"Congratulations you have completed the puzzle");
 
+        this.board.revalidate();
+        if (this.board.check()) {
+            JOptionPane.showMessageDialog(this, "Congratulations you have completed the puzzle");
+        }
 
     }
 }
